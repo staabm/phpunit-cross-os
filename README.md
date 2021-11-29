@@ -75,7 +75,9 @@ final class MyTestCase extends TestCase {
 
 ## make `assertEquals*` comparisons cross os agnostic
 
-Make use of [`CrossOsAgnosticStringComparatorFunctionalTest.php`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/CrossOsAgnosticStringComparatorFunctionalTest.php.php) to make your regular `assert*`-calls succeed even if the compared string differ in directory-separation characters:
+Make use of [`CrossOsAgnosticStringComparatorFunctionalTest.php`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/CrossOsAgnosticStringComparatorFunctionalTest.php.php) to make your regular `assert*`-calls succeed even if the compared string differ in directory-separation and/or end-of-line characters:
+
+`CrossOsAgnosticStringComparatorFunctionalTest` essentially provides all features of `DirSeparatorAgnosticStringComparator` and `EolAgnosticStringComparator` combined in a single class.
 
 ```php
 use SebastianBergmann\Comparator\Factory;
