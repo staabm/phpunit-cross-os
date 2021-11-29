@@ -12,7 +12,8 @@
         }
     },
     "require": {
-        "php": "^7.4 || ^8.0"
+        "php": "^7.4 || ^8.0",
+        "sebastian/comparator": "^4.0"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.1",
