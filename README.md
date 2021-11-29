@@ -5,6 +5,9 @@
 Make use of [`EolAgnosticStringComparator`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/EolAgnosticStringComparator.php) to make your regular `assert*`-calls succeed even if the compared string differ in end-of-line characters: 
 
 ```php
+use SebastianBergmann\Comparator\Factory;
+use staabm\PHPUnitCrossOs\Comparator\EolAgnosticStringComparator;
+
 final class MyTestCase extends TestCase {
 
     /**
@@ -41,6 +44,9 @@ final class MyTestCase extends TestCase {
 Make use of [`DirSeparatorAgnosticStringComparator.php`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/DirSeparatorAgnosticStringComparator.php.php) to make your regular `assert*`-calls succeed even if the compared string differ in directory-separation characters: 
 
 ```php
+use SebastianBergmann\Comparator\Factory;
+use staabm\PHPUnitCrossOs\Comparator\DirSeparatorAgnosticStringComparator;
+
 final class MyTestCase extends TestCase {
 
     /**
