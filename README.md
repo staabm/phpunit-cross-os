@@ -77,3 +77,45 @@ final class MyTestCase extends TestCase {
 
 }
 ```
+
+
+## make `assertEquals*` comparisons cross os agnostic
+
+Make use of [`CrossOsAgnosticStringComparatorFunctionalTest.php`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/CrossOsAgnosticStringComparatorFunctionalTest.php.php) to make your regular `assert*`-calls succeed even if the compared string differ in directory-separation and/or end-of-line characters:
+
+`CrossOsAgnosticStringComparatorFunctionalTest` essentially provides all features of `DirSeparatorAgnosticStringComparator` and `EolAgnosticStringComparator` combined in a single class.
+
+```php
+use SebastianBergmann\Comparator\Factory;
+use staabm\PHPUnitCrossOs\Comparator\CrossOsAgnosticStringComparatorFunctionalTest;
+
+final class MyTestCase extends TestCase {
+
+    /**
+     * @var CrossOsAgnosticStringComparatorFunctionalTest
+     */
+    private $comparator;
+
+    public function setUp(): void
+    {
+        $this->comparator = new CrossOsAgnosticStringComparatorFunctionalTest();
+
+        $factory = Factory::getInstance();
+        $factory->register($this->comparator);
+    }
+
+    public function tearDown(): void
+    {
+        $factory = Factory::getInstance();
+        $factory->unregister($this->comparator);
+    }
+
+    public function testStringsAreEqual() {
+        // this assertion will be considered successfull
+        self::assertEquals("hello\\world\n", "hello/world\r\n");
+        // works also for assertEquals* variants
+        self::assertEqualsIgnoringCase("hello\\world\r\n", "hello/WORLD\n");
+    }
+
+}
+```
