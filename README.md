@@ -1,6 +1,6 @@
 # PHPUnit Tools to ease cross operating system Testing
 
-## make `assert*` comparisons end-of-line (aka `PHP_EOL`) character agnostic
+## make `assertEquals*` comparisons end-of-line (aka `PHP_EOL`) character agnostic
 
 Make use of [`EolAgnosticStringComparator`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/EolAgnosticStringComparator.php) to make your regular `assert*`-calls succeed even if the compared string differ in end-of-line characters: 
 
@@ -29,12 +29,14 @@ final class MyTestCase extends TestCase {
     public function testStringsAreEqual() {
         // this assertion will be considered successfull
         self::assertEquals("hello\nworld", "hello\r\nworld");
+        // works also for assertEquals* variants
+        self::assertEqualsIgnoringCase("hello\nworld", "hello\r\nWORLD");
     }
 
 }
 ```
 
-## make `assert*` comparisons directory-separator (aka `DIRECTORY_SEPARATOR`) character agnostic
+## make `assertEquals*` comparisons directory-separator (aka `DIRECTORY_SEPARATOR`) character agnostic
 
 Make use of [`DirSeparatorAgnosticStringComparator.php`](https://github.com/staabm/phpunit-cross-os/blob/main/lib/Comparator/DirSeparatorAgnosticStringComparator.php.php) to make your regular `assert*`-calls succeed even if the compared string differ in directory-separation characters: 
 
@@ -63,6 +65,8 @@ final class MyTestCase extends TestCase {
     public function testStringsAreEqual() {
         // this assertion will be considered successfull
         self::assertEquals("hello\\world", "hello/world");
+        // works also for assertEquals* variants
+        self::assertEqualsIgnoringCase("hello\\world", "hello/WORLD");
     }
 
 }
