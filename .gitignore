@@ -2,3 +2,5 @@
 /tmp/
 /.phpunit.result.cache
 /composer.lock
+
+tests export-ignore
