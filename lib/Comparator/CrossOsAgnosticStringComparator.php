@@ -2,32 +2,37 @@
 
 namespace staabm\PHPUnitCrossOs\Comparator;
 
+use function PHPUnit\Framework\assertIsString;
 use SebastianBergmann\Comparator\Comparator;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use function PHPUnit\Framework\assertIsString;
 
-final class CrossOsAgnosticStringComparator extends Comparator {
+final class CrossOsAgnosticStringComparator extends Comparator
+{
     public function accepts($expected, $actual)
     {
-        return is_string($expected) && is_string($actual);
+        return \is_string($expected) && \is_string($actual);
     }
 
     /**
      * @return void
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false) {
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    {
         assertIsString($actual);
         assertIsString($expected);
 
-        $expected = str_replace(["\r\n", "\\"], ["\n", "/"], $expected);
-        $actual = str_replace(["\r\n", "\\"], ["\n", "/"], $actual);
+        $expected = new CrossOsAgnosticString($expected);
+        $actual = new CrossOsAgnosticString($actual);
+
+        $expected = $expected->getNormalized();
+        $actual = $actual->getNormalized();
 
         if ($ignoreCase) {
-            if (strcasecmp($expected, $actual) !== 0) {
+            if (0 !== strcasecmp($expected, $actual)) {
                 throw new ComparisonFailure($expected, $actual, $expected, $actual);
             }
         } else {
-            if (strcmp($expected, $actual) !== 0) {
+            if (0 !== strcmp($expected, $actual)) {
                 throw new ComparisonFailure($expected, $actual, $expected, $actual);
             }
         }

@@ -19,14 +19,21 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.2",
         "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "2.19.3"
     },
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true
     },
     "scripts": {
+        "csfix": [
+            "php-cs-fixer fix"
+        ],
         "phpstan": "phpstan analyze",
+        "phpstan-baseline": [
+            "phpstan analyse -c phpstan.neon.dist --generate-baseline || true"
+        ],
         "phpunit": "phpunit"
     }
 }
