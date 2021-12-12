@@ -14,7 +14,7 @@ final class EolAgnosticString
         $this->string = $string;
     }
 
-    public function getNormalized():string
+    public function getNormalized(): string
     {
         return str_replace("\r\n", "\n", $this->string);
     }
