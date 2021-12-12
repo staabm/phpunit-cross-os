@@ -14,7 +14,7 @@ final class DirSeparatorAgnosticString
         $this->string = $string;
     }
 
-    public function getNormalized():string
+    public function getNormalized(): string
     {
         return str_replace('\\', '/', $this->string);
     }
