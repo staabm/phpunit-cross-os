@@ -14,7 +14,7 @@ final class CrossOsAgnosticString
         $this->string = $string;
     }
 
-    public function getNormalized()
+    public function getNormalized():string
     {
         $s = str_replace('\\', '/', $this->string);
         $s = str_replace("\r\n", "\n", $s);
