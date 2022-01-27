@@ -6,7 +6,7 @@ $finder = PhpCsFixer\Finder::create()
     ])
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setUsingCache(true)
     ->setRules([
         '@Symfony' => true,
@@ -16,6 +16,7 @@ return PhpCsFixer\Config::create()
         'ordered_imports' => true,
         'protected_to_private' => false,
         'list_syntax' => ['syntax' => 'long'], // 'short' requires php 7.1+
+        'visibility_required' => ['elements' => ['property', 'method']], // don't require visibility on constants
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)

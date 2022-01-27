@@ -20,7 +20,7 @@
         "phpstan/phpstan": "^1.4",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
-        "friendsofphp/php-cs-fixer": "2.19.3"
+        "friendsofphp/php-cs-fixer": "3.5.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -28,7 +28,7 @@
     },
     "scripts": {
         "csfix": [
-            "php-cs-fixer fix"
+            "which xargs && (php-cs-fixer list-files --config=.php-cs-fixer.dist.php | xargs -n 400 -P 3 php-cs-fixer fix --config=.php-cs-fixer.dist.php) || php-cs-fixer fix"
         ],
         "phpstan": "phpstan analyze",
         "phpstan-baseline": [
