@@ -20,7 +20,7 @@
         "phpstan/phpstan": "^1.7",
         "phpstan/phpstan-phpunit": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "friendsofphp/php-cs-fixer": "3.8.0"
+        "friendsofphp/php-cs-fixer": "3.9.2"
     },
     "config": {
         "optimize-autoloader": true,
